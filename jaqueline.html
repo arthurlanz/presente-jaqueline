@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#27091a" />
     <title>Feliz dia dos Namorados, meu amor!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Raleway:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Raleway:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
     <link
@@ -15,35 +16,85 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <style>
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
 
       :root {
-        --wine:  #27091a;
-        --rose:  #b8516a;
+        --wine: #27091a;
+        --rose: #b8516a;
         --blush: #efd8de;
         --cream: #fdfaf7;
-        --linen: #f7f0ea;
-        --gold:  #aa8050;
-        --text:  #3a1020;
+        --gold: #aa8050;
+        --text: #3a1020;
         --muted: #7a4055;
       }
 
-      html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+      }
 
       body {
         background: var(--cream);
         color: var(--text);
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
         font-weight: 300;
         overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
       }
 
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
 
-      /* ─── HERO ──────────────────────────────────── */
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .polaroid.reveal:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      .polaroid.reveal:nth-child(2) {
+        transition-delay: 0.12s;
+      }
+      .polaroid.reveal:nth-child(3) {
+        transition-delay: 0.19s;
+      }
+      .polaroid.reveal:nth-child(4) {
+        transition-delay: 0.26s;
+      }
+      .polaroid.reveal:nth-child(5) {
+        transition-delay: 0.33s;
+      }
+      .polaroid.reveal:nth-child(6) {
+        transition-delay: 0.4s;
+      }
+      .polaroid.reveal:nth-child(7) {
+        transition-delay: 0.47s;
+      }
+      .polaroid.reveal:nth-child(8) {
+        transition-delay: 0.54s;
+      }
+      .polaroid.reveal:nth-child(9) {
+        transition-delay: 0.61s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
 
       .hero {
         min-height: 100svh;
@@ -52,8 +103,13 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        background: linear-gradient(155deg, #fdeef3 0%, #fdf6f0 45%, #f9e8ef 100%);
-        padding: 3rem 2rem;
+        background: linear-gradient(
+          155deg,
+          #fdeef3 0%,
+          #fdf6f0 50%,
+          #f9e8ef 100%
+        );
+        padding: 3rem 1.6rem 5rem;
         position: relative;
         overflow: hidden;
       }
@@ -71,121 +127,176 @@
         bottom: -20px;
         opacity: 0;
         animation: floatUp linear infinite;
+        will-change: transform, opacity;
       }
 
       @keyframes floatUp {
-        0%   { opacity: 0;    transform: translateY(0) rotate(0deg); }
-        15%  { opacity: 0.10; }
-        85%  { opacity: 0.07; }
-        100% { opacity: 0;    transform: translateY(-110vh) rotate(22deg); }
+        0% {
+          opacity: 0;
+          transform: translateY(0) rotate(0deg);
+        }
+        15% {
+          opacity: 0.09;
+        }
+        85% {
+          opacity: 0.06;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-110vh) rotate(20deg);
+        }
       }
 
-      .hero-inner { position: relative; z-index: 1; }
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+      }
 
       .hero-eyebrow {
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
         font-weight: 400;
-        font-size: 0.72rem;
+        font-size: 0.65rem;
         letter-spacing: 0.3em;
         text-transform: uppercase;
         color: var(--rose);
-        margin-bottom: 1.8rem;
+        margin-bottom: 1.4rem;
+        animation: heroFadeUp 0.8s ease 0.2s both;
       }
 
       .hero-name {
-        font-family: 'Fraunces', serif;
+        font-family: "Fraunces", serif;
         font-weight: 600;
         font-style: normal;
-        font-size: clamp(3.8rem, 15vw, 8.5rem);
+        font-size: clamp(3.6rem, 20vw, 8.5rem);
         line-height: 1;
         color: var(--wine);
-        margin-bottom: 1.3rem;
+        margin-bottom: 1.2rem;
+        animation: heroFadeUp 0.9s ease 0.4s both;
       }
 
       .hero-rule {
-        width: 48px;
+        width: 44px;
         height: 1px;
         background: var(--rose);
-        margin: 0 auto 1.5rem;
-        opacity: 0.45;
+        margin: 0 auto 1.3rem;
+        opacity: 0.4;
+        animation: heroFadeIn 0.8s ease 0.65s both;
       }
 
       .hero-date {
-        font-family: 'Raleway', sans-serif;
         font-weight: 300;
-        font-size: 0.72rem;
-        letter-spacing: 0.24em;
+        font-size: 0.68rem;
+        letter-spacing: 0.22em;
         text-transform: uppercase;
         color: var(--gold);
-        margin-bottom: 3.2rem;
+        margin-bottom: 0.6rem;
+        animation: heroFadeUp 0.8s ease 0.8s both;
+      }
+
+      .hero-counter {
+        font-weight: 300;
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+        color: var(--rose);
+        opacity: 0.7;
+        margin-bottom: 2.8rem;
+        animation: heroFadeIn 0.8s ease 1s both;
       }
 
       .hero-heart {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         color: var(--rose);
-        animation: pulse 1.9s ease-in-out infinite;
+        animation:
+          heroFadeIn 1s ease 1.2s both,
+          pulse 2s ease-in-out 1.2s infinite;
+      }
+
+      @keyframes heroFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes heroFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       @keyframes pulse {
-        0%, 100% { transform: scale(1);   opacity: 0.75; }
-        50%       { transform: scale(1.3); opacity: 1;    }
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.75;
+        }
+        50% {
+          transform: scale(1.28);
+          opacity: 1;
+        }
       }
 
       .scroll-hint {
         position: absolute;
-        bottom: 2rem;
+        bottom: 1.8rem;
         left: 50%;
         transform: translateX(-50%);
         color: var(--rose);
-        opacity: 0.4;
-        font-size: 0.75rem;
-        animation: nudge 2.5s ease-in-out infinite;
+        opacity: 0.38;
+        font-size: 0.8rem;
+        animation: nudge 2.6s ease-in-out infinite;
       }
 
       @keyframes nudge {
-        0%, 100% { transform: translateX(-50%) translateY(0); }
-        50%       { transform: translateX(-50%) translateY(6px); }
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(7px);
+        }
       }
-
-
-      /* ─── SHARED LAYOUT ─────────────────────────── */
 
       .wrap {
         max-width: 860px;
         margin: 0 auto;
-        padding: clamp(3.5rem, 9vw, 6rem) clamp(1.4rem, 5vw, 3rem);
+        padding: 3rem 1.4rem;
       }
 
       .section-label {
-        font-size: 0.68rem;
+        font-size: 0.65rem;
         letter-spacing: 0.26em;
         text-transform: uppercase;
         color: var(--gold);
         display: flex;
         align-items: center;
-        gap: 0.8rem;
-        margin-bottom: 0.6rem;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
       }
 
       .section-label::after {
-        content: '';
+        content: "";
         flex: 1;
         height: 1px;
         background: var(--blush);
       }
 
       .section-title {
-        font-family: 'Fraunces', serif;
+        font-family: "Fraunces", serif;
         font-weight: 400;
         font-style: normal;
-        font-size: clamp(1.7rem, 4vw, 2.5rem);
+        font-size: clamp(1.6rem, 6vw, 2.5rem);
         color: var(--wine);
-        margin-bottom: 2.8rem;
+        margin-bottom: 2.2rem;
         line-height: 1.2;
       }
-
-
-      /* ─── MUSIC ─────────────────────────────────── */
 
       .music-band {
         background: var(--wine);
@@ -194,61 +305,73 @@
       .music-inner {
         max-width: 860px;
         margin: 0 auto;
-        padding: clamp(2.5rem, 7vw, 4.5rem) clamp(1.4rem, 5vw, 3rem);
+        padding: 2.8rem 1.4rem;
       }
 
       .music-label {
-        font-size: 0.68rem;
+        font-size: 0.65rem;
         letter-spacing: 0.26em;
         text-transform: uppercase;
         color: var(--blush);
         display: flex;
         align-items: center;
-        gap: 0.8rem;
+        gap: 0.75rem;
         margin-bottom: 0.5rem;
-        opacity: 0.55;
+        opacity: 0.5;
       }
 
       .music-label::after {
-        content: '';
+        content: "";
         flex: 1;
         height: 1px;
-        background: rgba(239,216,222,0.2);
+        background: rgba(239, 216, 222, 0.18);
       }
 
       .music-title {
-        font-family: 'Fraunces', serif;
+        font-family: "Fraunces", serif;
         font-weight: 400;
         font-style: normal;
-        font-size: clamp(1.4rem, 3.5vw, 2rem);
+        font-size: clamp(1.4rem, 5.5vw, 2rem);
         color: #f5e0e6;
-        margin-bottom: 2rem;
+        margin-bottom: 1.8rem;
       }
 
       .music-tabs {
         display: flex;
-        gap: 0.5rem;
-        margin-bottom: 1.4rem;
-        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-bottom: 1.2rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+      }
+
+      .music-tabs::-webkit-scrollbar {
+        display: none;
       }
 
       .tab-btn {
+        flex-shrink: 0;
         background: transparent;
-        border: 1px solid rgba(239,216,222,0.25);
-        color: rgba(245,224,230,0.55);
-        font-family: 'Raleway', sans-serif;
+        border: 1px solid rgba(239, 216, 222, 0.22);
+        color: rgba(245, 224, 230, 0.5);
+        font-family: "Raleway", sans-serif;
         font-weight: 400;
-        font-size: 0.7rem;
-        letter-spacing: 0.14em;
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        padding: 0.55rem 1.2rem;
+        padding: 0.6rem 1.1rem;
         cursor: pointer;
-        transition: all 0.22s ease;
+        transition: all 0.2s ease;
+        touch-action: manipulation;
+        /* tap target confortavel */
+        min-height: 44px;
+        display: flex;
+        align-items: center;
       }
 
-      .tab-btn:hover {
-        border-color: rgba(184,81,106,0.6);
-        color: rgba(245,224,230,0.85);
+      .tab-btn:active {
+        opacity: 0.75;
       }
 
       .tab-btn.active {
@@ -259,7 +382,7 @@
 
       .spotify-wrap {
         overflow: hidden;
-        border-radius: 8px;
+        border-radius: 10px;
       }
 
       .spotify-wrap iframe {
@@ -268,42 +391,67 @@
         border: none;
       }
 
+      .photos-band {
+        background: var(--blush);
+      }
 
-      /* ─── PHOTOS ─────────────────────────────────── */
-
-      .photos-band { background: var(--blush); }
+      .photos-wrap {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 3rem 1rem;
+      }
 
       .polaroid-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 2rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.85rem;
       }
 
       .polaroid {
         background: #fff;
-        padding: 9px 9px 42px;
+        padding: 7px 7px 36px;
         box-shadow:
-          0 3px 16px rgba(39,9,26,0.09),
-          0 1px 3px rgba(39,9,26,0.05);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+          0 3px 14px rgba(39, 9, 26, 0.1),
+          0 1px 3px rgba(39, 9, 26, 0.05);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
         cursor: default;
       }
 
-      .polaroid:nth-child(1) { transform: rotate(-1.8deg); }
-      .polaroid:nth-child(2) { transform: rotate( 1.3deg); }
-      .polaroid:nth-child(3) { transform: rotate(-0.7deg); }
-      .polaroid:nth-child(4) { transform: rotate( 2.1deg); }
-      .polaroid:nth-child(5) { transform: rotate(-1.4deg); }
-      .polaroid:nth-child(6) { transform: rotate( 0.9deg); }
-      .polaroid:nth-child(7) { transform: rotate(-2.2deg); }
-      .polaroid:nth-child(8) { transform: rotate( 1.7deg); }
-      .polaroid:nth-child(9) { transform: rotate(-0.5deg); }
+      .polaroid:nth-child(1) {
+        transform: rotate(-1.8deg);
+      }
+      .polaroid:nth-child(2) {
+        transform: rotate(1.4deg);
+      }
+      .polaroid:nth-child(3) {
+        transform: rotate(-0.6deg);
+      }
+      .polaroid:nth-child(4) {
+        transform: rotate(2deg);
+      }
+      .polaroid:nth-child(5) {
+        transform: rotate(-1.5deg);
+      }
+      .polaroid:nth-child(6) {
+        transform: rotate(0.8deg);
+      }
+      .polaroid:nth-child(7) {
+        transform: rotate(-2.1deg);
+      }
+      .polaroid:nth-child(8) {
+        transform: rotate(1.6deg);
+      }
+      .polaroid:nth-child(9) {
+        transform: rotate(-0.4deg);
+      }
 
-      .polaroid:hover {
-        transform: rotate(0deg) scale(1.05) !important;
-        box-shadow: 0 12px 36px rgba(39,9,26,0.18);
-        position: relative;
+      .polaroid:active {
+        transform: rotate(0deg) scale(1.04) !important;
+        box-shadow: 0 8px 28px rgba(39, 9, 26, 0.16);
         z-index: 5;
+        position: relative;
       }
 
       .polaroid img {
@@ -314,29 +462,27 @@
       }
 
       .polaroid-caption {
-        font-family: 'Raleway', sans-serif;
+        font-family: "Raleway", sans-serif;
         font-weight: 300;
-        font-size: 0.82rem;
-        letter-spacing: 0.06em;
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
         color: var(--muted);
         text-align: center;
-        margin-top: 8px;
+        margin-top: 7px;
       }
-
-
-      /* ─── DIVIDER ────────────────────────────────── */
 
       .divider {
         display: flex;
         align-items: center;
-        gap: 1.2rem;
-        padding: 0 clamp(1.4rem, 5vw, 3rem);
+        gap: 1rem;
+        padding: 0 1.4rem;
         max-width: 860px;
         margin: 0 auto;
       }
 
-      .divider::before, .divider::after {
-        content: '';
+      .divider::before,
+      .divider::after {
+        content: "";
         flex: 1;
         height: 1px;
         background: var(--blush);
@@ -344,12 +490,9 @@
 
       .divider i {
         color: var(--rose);
-        font-size: 0.7rem;
-        opacity: 0.45;
+        font-size: 0.65rem;
+        opacity: 0.4;
       }
-
-
-      /* ─── LETTERS ────────────────────────────────── */
 
       .letters-stack {
         display: flex;
@@ -361,58 +504,66 @@
         background: #fff;
         border: 1px solid var(--blush);
         overflow: hidden;
-        transition: box-shadow 0.25s;
-      }
-
-      .envelope:hover {
-        box-shadow: 0 4px 20px rgba(39,9,26,0.07);
+        transition: box-shadow 0.22s;
       }
 
       .envelope-header {
         display: flex;
         align-items: center;
-        gap: 1.2rem;
-        padding: 1.3rem 1.8rem;
+        gap: 1rem;
+        padding: 1.1rem 1.2rem;
         cursor: pointer;
         user-select: none;
         -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        /* tap target */
+        min-height: 64px;
+      }
+
+      .envelope-header:active .env-icon {
+        background: var(--rose);
+        color: #fff;
       }
 
       .env-icon {
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
         background: var(--blush);
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--rose);
-        font-size: 1rem;
+        font-size: 0.95rem;
         flex-shrink: 0;
-        transition: background 0.25s, color 0.25s;
+        transition:
+          background 0.22s,
+          color 0.22s;
       }
 
-      .envelope-header:hover .env-icon,
       .envelope.open .env-icon {
         background: var(--rose);
         color: #fff;
       }
 
-      .env-meta { flex: 1; min-width: 0; }
+      .env-meta {
+        flex: 1;
+        min-width: 0;
+      }
 
       .env-number {
-        font-size: 0.66rem;
-        letter-spacing: 0.22em;
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
         color: var(--gold);
         display: block;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.2rem;
       }
 
       .env-title {
-        font-family: 'Fraunces', serif;
+        font-family: "Fraunces", serif;
         font-weight: 400;
         font-style: normal;
-        font-size: 1.05rem;
+        font-size: 0.95rem;
         color: var(--wine);
         white-space: nowrap;
         overflow: hidden;
@@ -421,40 +572,44 @@
 
       .env-chevron {
         color: var(--rose);
-        font-size: 0.78rem;
-        transition: transform 0.35s ease;
+        font-size: 0.75rem;
+        transition: transform 0.32s ease;
         flex-shrink: 0;
       }
 
-      .envelope.open .env-chevron { transform: rotate(180deg); }
+      .envelope.open .env-chevron {
+        transform: rotate(180deg);
+      }
 
       .env-body {
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1);
+        transition: max-height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      .envelope.open .env-body { max-height: 3000px; }
+      .envelope.open .env-body {
+        max-height: 4000px;
+      }
 
       .letter-inner {
-        padding: 0 1.8rem 2.5rem;
+        padding: 0 1.2rem 2.2rem;
         border-top: 1px solid var(--blush);
       }
 
       .letter-salutation {
-        font-family: 'Fraunces', serif;
+        font-family: "Fraunces", serif;
         font-weight: 400;
         font-style: italic;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         color: var(--rose);
-        margin: 2rem 0 1.3rem;
+        margin: 1.8rem 0 1.1rem;
         display: block;
       }
 
       .letter-text {
-        font-family: 'Raleway', sans-serif;
-        font-size: clamp(0.88rem, 2vw, 0.97rem);
-        line-height: 2;
+        font-family: "Raleway", sans-serif;
+        font-size: 1rem;
+        line-height: 1.95;
         color: var(--text);
         font-weight: 300;
         white-space: pre-wrap;
@@ -462,11 +617,11 @@
 
       .letter-sign {
         display: block;
-        margin-top: 2.2rem;
-        font-family: 'Fraunces', serif;
+        margin-top: 2rem;
+        font-family: "Fraunces", serif;
         font-weight: 400;
         font-style: italic;
-        font-size: 1rem;
+        font-size: 0.97rem;
         color: var(--rose);
         text-align: right;
       }
@@ -476,148 +631,188 @@
         font-style: italic;
       }
 
-
-      /* ─── FOOTER ─────────────────────────────────── */
-
       footer {
         background: var(--wine);
         color: #f5e0e6;
         text-align: center;
-        padding: 4.5rem 2rem;
+        padding: 4rem 2rem calc(3rem + env(safe-area-inset-bottom));
       }
 
       .footer-heart {
         color: var(--rose);
-        font-size: 1.1rem;
-        margin-bottom: 1.4rem;
+        font-size: 1rem;
+        margin-bottom: 1.3rem;
       }
 
       .footer-line {
-        font-family: 'Fraunces', serif;
+        font-family: "Fraunces", serif;
         font-weight: 300;
         font-style: normal;
-        font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+        font-size: clamp(1.15rem, 5vw, 1.7rem);
         line-height: 1.65;
-        margin-bottom: 2rem;
+        margin-bottom: 1.8rem;
         color: #f5e0e6;
       }
 
       .footer-meta {
-        font-family: 'Raleway', sans-serif;
-        font-size: 0.68rem;
-        letter-spacing: 0.2em;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
-        opacity: 0.28;
+        opacity: 0.25;
       }
 
+      @media (min-width: 600px) {
+        .wrap {
+          padding: 5rem 2.5rem;
+        }
+        .music-inner {
+          padding: 4rem 2.5rem;
+        }
+        .photos-wrap {
+          padding: 5rem 2rem;
+        }
 
-      /* ─── RESPONSIVE ─────────────────────────────── */
+        .polaroid-grid {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 1.8rem;
+        }
 
-      @media (max-width: 480px) {
-        .polaroid-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .polaroid { padding: 6px 6px 34px; }
-        .envelope-header { padding: 1.1rem 1.2rem; gap: 0.9rem; }
-        .letter-inner { padding: 0 1.2rem 2rem; }
-        .music-tabs { gap: 0.4rem; }
-        .tab-btn { font-size: 0.64rem; padding: 0.5rem 0.9rem; }
+        .polaroid {
+          padding: 9px 9px 42px;
+        }
+        .polaroid-caption {
+          font-size: 0.82rem;
+        }
+
+        .polaroid:hover {
+          transform: rotate(0deg) scale(1.05) !important;
+          box-shadow: 0 12px 36px rgba(39, 9, 26, 0.18);
+          position: relative;
+          z-index: 5;
+        }
+
+        .envelope-header {
+          padding: 1.3rem 1.8rem;
+          gap: 1.2rem;
+        }
+        .letter-inner {
+          padding: 0 1.8rem 2.5rem;
+        }
+        .letter-text {
+          font-size: clamp(0.9rem, 2vw, 1rem);
+        }
       }
     </style>
   </head>
   <body>
-
-    <!-- HERO -->
     <div class="hero">
       <div class="hero-bg" id="hero-bg"></div>
       <div class="hero-inner">
         <p class="hero-eyebrow">para a pessoa mais especial da minha vida</p>
         <h1 class="hero-name">Jaqueline</h1>
         <div class="hero-rule"></div>
-        <p class="hero-date">Primeiro beijo &nbsp;&middot;&nbsp; 14 de fevereiro de 2026</p>
+        <p class="hero-date">
+          Primeiro beijo &nbsp;&middot;&nbsp; 14 de fevereiro de 2026
+        </p>
+        <p class="hero-counter" id="hero-counter"></p>
         <i class="fa-solid fa-heart hero-heart"></i>
       </div>
       <div class="scroll-hint">
         <i class="fa-solid fa-chevron-down"></i>
       </div>
     </div>
-
-
-    <!-- MUSICA -->
     <div class="music-band">
-      <div class="music-inner">
-        <p class="music-label"><i class="fa-brands fa-spotify"></i> nossas músicas</p>
-        <h2 class="music-title">As que me lembram de você</h2>
+      <div class="music-inner reveal">
+        <p class="music-label">
+          <i class="fa-brands fa-spotify"></i> nossas musicas
+        </p>
+        <h2 class="music-title">As que me lembram de voce</h2>
         <div class="music-tabs">
-          <button class="tab-btn active" onclick="switchTrack(0)">Estresse</button>
+          <button class="tab-btn active" onclick="switchTrack(0)">
+            Estresse
+          </button>
           <button class="tab-btn" onclick="switchTrack(1)">Butterflies</button>
-          <button class="tab-btn" onclick="switchTrack(2)">Heaven Can Wait</button>
+          <button class="tab-btn" onclick="switchTrack(2)">
+            Heaven Can Wait
+          </button>
         </div>
         <div class="spotify-wrap">
           <iframe
             id="spotify-frame"
             src="https://open.spotify.com/embed/track/6sZLfLvCVWYIR6GCwejYAQ?utm_source=generator&theme=0"
             height="152"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy">
+            allow="
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              fullscreen;
+              picture-in-picture;
+            "
+            loading="lazy"
+          >
           </iframe>
         </div>
       </div>
     </div>
-
-
-    <!-- FOTOS -->
     <div class="photos-band">
-      <div class="wrap">
-        <p class="section-label"><i class="fa-regular fa-images"></i> nossas fotos</p>
-        <h2 class="section-title">A gente junto</h2>
+      <div class="photos-wrap">
+        <div class="reveal">
+          <p class="section-label">
+            <i class="fa-regular fa-images"></i> nossas fotos
+          </p>
+          <h2 class="section-title">A gente junto</h2>
+        </div>
         <div class="polaroid-grid">
-          <div class="polaroid">
-            <img src="/fotos/primeirafoto.jpg" alt="nos" />
+          <div class="polaroid reveal">
+            <img src="fotos/primeirafoto.jpg" alt="nos" loading="lazy" />
             <p class="polaroid-caption">a gente</p>
           </div>
-          <div class="polaroid">
-            <img src="/fotos/cozinhando.png" alt="nos" />
+          <div class="polaroid reveal">
+            <img src="fotos/cozinhando.png" alt="nos" loading="lazy" />
             <p class="polaroid-caption">masterchef jaqueline</p>
           </div>
-          <div class="polaroid">
-            <img src="/fotos/jaqueline.jpg" alt="voce" />
+          <div class="polaroid reveal">
+            <img src="fotos/jaqueline.jpg" alt="voce" loading="lazy" />
             <p class="polaroid-caption">minha linda</p>
           </div>
-          <div class="polaroid">
-            <img src="/fotos/lista47.png" alt="" />
+          <div class="polaroid reveal">
+            <img src="fotos/lista47.png" alt="" loading="lazy" />
             <p class="polaroid-caption">dia de corrida</p>
           </div>
-          <div class="polaroid">
-            <img src="fotos/primeiraveznamari.png" alt="" />
+          <div class="polaroid reveal">
+            <img src="fotos/primeiraveznamari.png" alt="" loading="lazy" />
             <p class="polaroid-caption">minha paz</p>
           </div>
-          <div class="polaroid">
-            <img src="/fotos/primeirocinema.jpg" alt="nos" />
+          <div class="polaroid reveal">
+            <img src="fotos/primeirocinema.jpg" alt="nos" loading="lazy" />
             <p class="polaroid-caption">meu abraco favorito</p>
           </div>
-          <div class="polaroid">
-            <img src="/fotos/centrosaochico.jpg" alt="" />
+          <div class="polaroid reveal">
+            <img src="fotos/centrosaochico.jpg" alt="" loading="lazy" />
             <p class="polaroid-caption">meu par</p>
           </div>
-          <div class="polaroid">
-            <img src="/fotos/visco.png" alt="" />
+          <div class="polaroid reveal">
+            <img src="fotos/visco.png" alt="" loading="lazy" />
             <p class="polaroid-caption">sempre nos</p>
           </div>
-          <div class="polaroid">
-            <img src="/fotos/notoque.png" alt="" />
+          <div class="polaroid reveal">
+            <img src="fotos/notoque.png" alt="" loading="lazy" />
             <p class="polaroid-caption">minha pilota</p>
           </div>
         </div>
       </div>
     </div>
-
-
     <div class="divider"><i class="fa-solid fa-heart"></i></div>
     <div class="wrap">
-      <p class="section-label"><i class="fa-regular fa-envelope"></i> </p>
-      <h2 class="section-title">Cada uma escrita de coração</h2>
+      <div class="reveal">
+        <p class="section-label">
+          <i class="fa-regular fa-envelope"></i> cartas pra você
+        </p>
+        <h2 class="section-title">Cada uma escrita de coração</h2>
+      </div>
 
       <div class="letters-stack">
-        <div class="envelope" id="env-1">
+        <div class="envelope reveal" id="env-1">
           <div class="envelope-header" onclick="toggleEnvelope('env-1')">
             <div class="env-icon"><i class="fa-regular fa-envelope"></i></div>
             <div class="env-meta">
@@ -629,115 +824,158 @@
           <div class="env-body">
             <div class="letter-inner">
               <span class="letter-salutation">Jaqueline,</span>
-              <p class="letter-text">a gente se conheceu no carnaval, e no começo era so pra ser uma ficada, mas as coisas foram acontecendo bem rapido e em pouco tempo, eu ja tava doido por voce, a ponto de dizer que, um dia depois de te conhecer, eu ja dizia que ia namorar com voce e que, em uma semana, eu ja te amava
-
-eu confio demais em voce, no jeito que voce sorri, nas piadas que a gente faz, porque a gente se entende, e isso e muito bom. eu amo o seu carinho, o seu beijo, o seu sorriso, tudo em voce
-
-hoje, tudo que eu mais desejo e que voce seja feliz como voce me faz feliz, e mesmo se eu nao estiver ai no seu aniversario, se eu tiver a certeza que voce vai estar dando esse sorriso que voce ta dando agora enquanto le isso, mesmo eu estando longe, vou sentir aquela sensacao do coracao ficar acelerado de quando estamos perto, e isso nos resume ne?
-
-longe ou perto, eu sei que voce sempre vai ser uma das pessoas mais importantes da minha vida, porque tudo que vem de voce me faz bem, seja o seu sorriso, seu choro, seu silencio ou suas palavras.
-
-e logo quando eu achei que nunca mais ia sentir isso de novo, voce apareceu, trazendo cor pra minha vida quando pensei que ela seria cinza e sem graca, e acho que foi ai que eu entendi que isso tudo era amor, daqueles que voce sente logo de cara e tem certeza do que e
-
-entao, por favor nunca mude esse seu jeito lindo de ser que me encantou em tao pouco tempo, e nunca deixe ninguem falar o contrario, porque quem te ama sabe o privilegio que e te ter</p>
-              <span class="letter-sign">feliz aniversario, meu amor &mdash; eu amo voce demais</span>
+              <p class="letter-text">
+                a gente se conheceu no carnaval, e no começo era só pra ser uma
+                ficada, mas as coisas foram acontecendo bem rápido e em pouco
+                tempo, eu já tava doido por você, a ponto de dizer que, um dia
+                depois de te conhecer, eu já dizia que ia namorar com você e
+                que, em uma semana, eu já te amava eu confio demais em você, no
+                jeito que você sorri, nas piadas que a gente faz, porque a gente
+                se entende, e isso é muito bom. eu amo o seu carinho, o seu
+                beijo, o seu sorriso, tudo em você hoje, tudo que eu mais desejo
+                é que você seja feliz como você me faz feliz, e mesmo se eu não
+                estiver aí no seu aniversário, se eu tiver a certeza que você
+                vai estar dando esse sorriso que você tá dando agora enquanto lê
+                isso, mesmo eu estando longe, vou sentir aquela sensação do
+                coração ficar acelerado de quando estamos perto, e isso nos
+                resume né? longe ou perto, eu sei que você sempre vai ser uma
+                das pessoas mais importantes da minha vida, porque tudo que vem
+                de você me faz bem, seja o seu sorriso, seu choro, seu silêncio
+                ou suas palavras. e logo quando eu achei que nunca mais ia
+                sentir isso de novo, você apareceu, trazendo cor pra minha vida
+                quando pensei que ela seria cinza e sem graça, e acho que foi aí
+                que eu entendi que isso tudo era amor, daqueles que você sente
+                logo de cara e tem certeza do que é então, por favor nunca mude
+                esse seu jeito lindo de ser que me encantou em tão pouco tempo,
+                e nunca deixe ninguém falar o contrário, porque quem te ama sabe
+                o privilégio que é te ter
+              </p>
+              <span class="letter-sign"
+                >feliz aniversario, meu amor &mdash; eu amo você demais!!</span
+              >
             </div>
           </div>
         </div>
-
-        <!-- CARTA 2 — substitua o texto e o titulo abaixo -->
-        <div class="envelope" id="env-2">
+        <div class="envelope reveal" id="env-2">
           <div class="envelope-header" onclick="toggleEnvelope('env-2')">
             <div class="env-icon"><i class="fa-regular fa-envelope"></i></div>
             <div class="env-meta">
               <span class="env-number">carta n&ordm; 2</span>
-              <span class="env-title"><!-- coloque aqui o titulo --></span>
+              <span class="env-title"><!-- titulo aqui --></span>
             </div>
             <i class="fa-solid fa-chevron-down env-chevron"></i>
           </div>
           <div class="env-body">
             <div class="letter-inner">
               <span class="letter-salutation">Jaqueline,</span>
-              <!-- substitua o texto abaixo pela sua segunda carta -->
-              <p class="letter-text placeholder">[ escreva aqui a sua segunda carta ]</p>
+              <p class="letter-text placeholder">
+                [ escreva aqui a sua segunda carta ]
+              </p>
               <span class="letter-sign">Seu amor, Arthur</span>
             </div>
           </div>
         </div>
 
-        <!-- CARTA 3 — substitua o texto e o titulo abaixo -->
-        <div class="envelope" id="env-3">
+        <!-- CARTA 3 — substitua o texto e o titulo -->
+        <div class="envelope reveal" id="env-3">
           <div class="envelope-header" onclick="toggleEnvelope('env-3')">
             <div class="env-icon"><i class="fa-regular fa-envelope"></i></div>
             <div class="env-meta">
               <span class="env-number">carta n&ordm; 3</span>
-              <span class="env-title"><!-- coloque aqui o titulo --></span>
+              <span class="env-title"><!-- titulo aqui --></span>
             </div>
             <i class="fa-solid fa-chevron-down env-chevron"></i>
           </div>
           <div class="env-body">
             <div class="letter-inner">
               <span class="letter-salutation">Jaqueline,</span>
-              <!-- substitua o texto abaixo pela sua terceira carta -->
-              <p class="letter-text placeholder">[ escreva aqui a sua terceira carta ]</p>
+              <p class="letter-text placeholder">
+                [ escreva aqui a sua terceira carta ]
+              </p>
               <span class="letter-sign">Seu amor, Arthur</span>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-
-    <!-- FOOTER -->
     <footer>
       <div class="footer-heart"><i class="fa-solid fa-heart"></i></div>
       <p class="footer-line">
         você traz cor pra minha vida<br />
         e eu amo cada segundo ao seu lado
       </p>
-      <p class="footer-meta">feito com muito amor, para Jaqueline, eu te amo!</p>
+      <p class="footer-meta">
+        feito com muito amor, para Jaqueline, eu te amo!
+      </p>
     </footer>
 
-
     <script>
-      // Floating hearts
       (function () {
-        var bg = document.getElementById('hero-bg');
-        for (var i = 0; i < 20; i++) {
-          var el = document.createElement('i');
-          el.className = 'fa-solid fa-heart float-heart';
-          el.style.left             = (Math.random() * 100) + '%';
-          el.style.fontSize         = (7 + Math.random() * 11) + 'px';
-          el.style.animationDuration = (10 + Math.random() * 14) + 's';
-          el.style.animationDelay   = (Math.random() * 18) + 's';
+        var isMobile = window.innerWidth < 600;
+        var count = isMobile ? 12 : 20;
+        var bg = document.getElementById("hero-bg");
+        for (var i = 0; i < count; i++) {
+          var el = document.createElement("i");
+          el.className = "fa-solid fa-heart float-heart";
+          el.style.left = Math.random() * 100 + "%";
+          el.style.fontSize = 6 + Math.random() * 10 + "px";
+          el.style.animationDuration = 11 + Math.random() * 14 + "s";
+          el.style.animationDelay = Math.random() * 18 + "s";
           bg.appendChild(el);
         }
       })();
+      (function () {
+        var start = new Date("2026-02-14");
+        var now = new Date();
+        var days = Math.max(0, Math.floor((now - start) / 86400000));
+        var el = document.getElementById("hero-counter");
+        if (days > 0) el.textContent = days + " dias juntos";
+      })();
+      (function () {
+        if (!("IntersectionObserver" in window)) {
+          document.querySelectorAll(".reveal").forEach(function (el) {
+            el.classList.add("visible");
+          });
+          return;
+        }
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08 },
+        );
 
-      // Spotify tabs
+        document.querySelectorAll(".reveal").forEach(function (el) {
+          observer.observe(el);
+        });
+      })();
       var tracks = [
-        '6sZLfLvCVWYIR6GCwejYAQ',  // Estresse - Alee
-        '4jyyma8YdFC4S4llusSFRu',  // butterflies. - Brent Faiyaz
-        '1AZXNAVDD9ZFIEKySgflFz'   // Heaven Can Wait - Michael Jackson
+        "6sZLfLvCVWYIR6GCwejYAQ",
+        "4jyyma8YdFC4S4llusSFRu",
+        "1AZXNAVDD9ZFIEKySgflFz",
       ];
 
       function switchTrack(i) {
-        document.getElementById('spotify-frame').src =
-          'https://open.spotify.com/embed/track/' + tracks[i] + '?utm_source=generator&theme=0';
-        document.querySelectorAll('.tab-btn').forEach(function (b, j) {
-          b.classList.toggle('active', i === j);
+        document.getElementById("spotify-frame").src =
+          "https://open.spotify.com/embed/track/" +
+          tracks[i] +
+          "?utm_source=generator&theme=0";
+        document.querySelectorAll(".tab-btn").forEach(function (b, j) {
+          b.classList.toggle("active", i === j);
         });
       }
 
-      // Envelope toggle
       function toggleEnvelope(id) {
         var el = document.getElementById(id);
-        el.classList.toggle('open');
-        var icon = el.querySelector('.env-icon i');
-        icon.className = el.classList.contains('open')
-          ? 'fa-regular fa-envelope-open'
-          : 'fa-regular fa-envelope';
+        var open = el.classList.toggle("open");
+        el.querySelector(".env-icon i").className = open
+          ? "fa-regular fa-envelope-open"
+          : "fa-regular fa-envelope";
       }
     </script>
   </body>
